@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 5px;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+            .timer {
+            font-size: 48px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+ <div class="timer" id="timer" style="position: fixed; text-align: right;">0:30</div>
+     <script>
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "Time's up!";
+                    document.getElementById('submit-btn').click();
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const seconds = 30* 1;
+            const display = document.getElementById('timer');
+            startTimer(seconds, display);
+        };
+    </script>
+    <div class="quiz-container">
+        <form id="quizForm" th:action="@{quiz}"  th:object="${QuizForm}">
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>Automatic type conversion is possible in which of the possible cases?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q1" value="A"> Long to int</label></li>
+                    <li><label><input type="radio" name="q1" value="B"> int to long</label></li>
+                    <li><label><input type="radio" name="q1" value="C"> int to byte</label></li>
+                    <li><label><input type="radio" name="q1" value="D"> short to byte</label></li>
+                </ul>
+            </div>
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>What is the size of float and double in java?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q2" value="A">32 & 64</label></li>
+                    <li><label><input type="radio" name="q2" value="B"> 32 & 32</label></li>
+                    <li><label><input type="radio" name="q2" value="C">64 & 64</label></li>
+                    <li><label><input type="radio" name="q2" value="D">64 & 32</label></li>
+                </ul>
+            </div>
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>Select the valid statement ?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q3" value="A">char[] ch = new char(5)</label></li>
+                    <li><label><input type="radio" name="q3" value="B">char[] ch = new char[5]</label></li>
+                    <li><label><input type="radio" name="q3" value="C"> char[] ch = new char()</label></li>
+                    <li><label><input type="radio" name="q3" value="D">char[] ch = new char[]</label></li>
+                </ul>
+            </div>
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>when an array is passed to a method, what does the method receive?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q4" value="A"> The reference of the array</label></li>
+                    <li><label><input type="radio" name="q4" value="B">A copy of the array</label></li>
+                    <li><label><input type="radio" name="q4" value="C">Length of array</label></li>
+                    <li><label><input type="radio" name="q4" value="D">Copy of First Element </label></li>
+                </ul>
+            </div>
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>select the valid statement to declare and initialize an array.</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q5" value="A">int[] a={}</label></li>
+                    <li><label><input type="radio" name="q5" value="B">int[] a={1,2,3}</label></li>
+                    <li><label><input type="radio" name="q5" value="C"> int() a={}</label></li>
+                    <li><label><input type="radio" name="q5" value="D">int() a={1,2,3}</label></li>
+                </ul>
+            </div>
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>What is the role of @SpringBootApplication annotation in Spring Boot?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q6" value="A"> It is used to define a batch job</label></li>
+                    <li><label><input type="radio" name="q6" value="B">  It is used to mark a configuration class</label></li>
+                    <li><label><input type="radio" name="q6" value="C"> It is a convenience annotation that adds @SpringBootConfiguration, @EnableAutoConfiguration, and @ComponentScan</label></li>
+                    <li><label><input type="radio" name="q6" value="D"> It is used for defining RESTful web services</label></li>
+                </ul>
+            </div>
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>What is the purpose of Spring Boot Starters?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q7" value="A">To provide scripts for starting and stopping the application</label></li>
+                    <li><label><input type="radio" name="q7" value="B">To provide a set of convenient dependency descriptors for a specific type of application</label></li>
+                    <li><label><input type="radio" name="q7" value="C"> To automatically configure security settings</label></li>
+                    <li><label><input type="radio" name="q7" value="D"> To offer a graphical user interface for application configuration</label></li>
+                </ul>
+            </div>
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>Which embedded servlet container is NOT supported by default in Spring Boot?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q8" value="A"> Tomcat</label></li>
+                    <li><label><input type="radio" name="q8" value="B">  Jetty</label></li>
+                    <li><label><input type="radio" name="q8" value="C"> Undertow</label></li>
+                    <li><label><input type="radio" name="q8" value="D"> Apache HTTP Server</label></li>
+                </ul>
+            </div>
+            <!-- Question 9 -->
+            <div class="question">
+                <h3>What is the purpose of Spring Boot Actuator?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q9" value="A"> To provide support for client-side UI development</label></li>
+                    <li><label><input type="radio" name="q9" value="B">To offer a set of production-ready features to help monitor and manage the application</label></li>
+                    <li><label><input type="radio" name="q9" value="C"> To enable batch processing capabilities</label></li>
+                    <li><label><input type="radio" name="q9" value="D">To provide ORM (Object-Relational Mapping) support</label></li>
+                </ul>
+            </div>
+            <!-- Question 10 -->
+            <div class="question">
+                <h3>What is the default port for a web application in Spring Boot?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q10" value="A">8000</label></li>
+                    <li><label><input type="radio" name="q10" value="B">4435</label></li>
+                    <li><label><input type="radio" name="q10" value="C"> 8080</label></li>
+                    <li><label><input type="radio" name="q10" value="D">8085</label></li>
+                </ul>
+            </div>
+            <!-- Submit Button -->
+            <button  id="submit-btn"     type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

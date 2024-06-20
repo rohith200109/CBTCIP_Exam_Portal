@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+    <link rel="stylesheet" th:href="@{/css/editprofile.css}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Update Profile</h1>
+        <form th:action="@{updateprofile}" th:method="post" th:object="${LoginDetails}">
+            <div class="form-group">
+                <label for="id">Login Id:</label>
+                <input type="text" id="id" th:field="*{id}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}">
+            </div>
+            <input type="submit" value="Login" class="submit-btn">
+        </form>
+    </div>
+</body>
+</html>

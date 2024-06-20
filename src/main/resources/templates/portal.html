@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Portal</title>
+    <link rel="stylesheet" th:href="@{/css/portalstyle.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Exam Portal</h1>
+        <div class="button-container">
+            <a th:href="@{updateProfile}"><button class="styled-button">Update Profile</button></a>
+            <a th:href="@{takeTest}"><button class="styled-button">Java Test</button></a>
+            <a th:href="@{logout}"><button class="styled-button">Log Out</button></a>
+        </div>
+    </div>
+</body>
+</html>
